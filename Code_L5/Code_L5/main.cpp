@@ -73,6 +73,50 @@ Vector2D calcularNormalDelObstaculo(Vector2D posParticula, double minX, double m
     return Vector2D(0, 1);                                       // Rebota arriba
 }
 
+// ============================================================================
+// 3. ENTIDADES DEL MUNDO FÍSICO
+// ============================================================================
+class Particle {
+public:
+    int id;
+    Vector2D pos;
+    Vector2D vel;
+    double mass;
+    double radius;
+    bool active;
+
+    Particle(int _id, Vector2D _pos, Vector2D _vel, double _mass, double _radius) {
+        id = _id;
+        pos = _pos;
+        vel = _vel;
+        mass = _mass;
+        radius = _radius;
+        active = true;
+    }
+
+    // Movimiento libre basado en ecuaciones de tiempo discreto
+    void updatePosition(double dt) {
+        if (active == false) return;
+        
+        // pos = pos + vel * dt
+        Vector2D desplazamiento = vel.multiplicarPorEscalar(dt);
+        pos = pos.sumar(desplazamiento);
+    }
+};
+
+class Obstacle {
+public:
+    double minX, maxX, minY, maxY;
+
+    // Modela los obstáculos cuadrados estáticos requeridos
+    Obstacle(Vector2D centro, double longitudLado) {
+        double mitadLado = longitudLado / 2.0;
+        minX = centro.getX() - mitadLado;
+        maxX = centro.getX() + mitadLado;
+        minY = centro.getY() - mitadLado;
+        maxY = centro.getY() + mitadLado;
+    }
+};
 
 
 

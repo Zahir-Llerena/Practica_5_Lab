@@ -47,6 +47,33 @@ public:
     }
 };
 
+// ============================================================================
+// 2. FUNCIONES GEOMÉTRICAS AUXILIARES
+// ============================================================================
+
+// Busca el punto más cercano en el borde del obstáculo cuadrado
+Vector2D obtenerPuntoMasCercano(Vector2D posParticula, double minX, double maxX, double minY, double maxY) {
+    double cercanoX = std::max(minX, std::min(posParticula.getX(), maxX));
+    double cercanoY = std::max(minY, std::min(posParticula.getY(), maxY));
+    return Vector2D(cercanoX, cercanoY);
+}
+
+// Determina hacia qué lado del cuadrado se rebotará
+Vector2D calcularNormalDelObstaculo(Vector2D posParticula, double minX, double maxX, double minY, double maxY) {
+    double distIzquierda = std::abs(posParticula.getX() - minX);
+    double distDerecha   = std::abs(posParticula.getX() - maxX);
+    double distAbajo     = std::abs(posParticula.getY() - minY);
+    double distArriba    = std::abs(posParticula.getY() - maxY);
+    
+    double menorDistancia = std::min({distIzquierda, distDerecha, distAbajo, distArriba});
+    
+    if (menorDistancia == distIzquierda) return Vector2D(-1, 0); // Rebota a la izquierda
+    if (menorDistancia == distDerecha)   return Vector2D(1, 0);  // Rebota a la derecha
+    if (menorDistancia == distAbajo)     return Vector2D(0, -1); // Rebota abajo
+    return Vector2D(0, 1);                                       // Rebota arriba
+}
+
+
 
 
 // Version preliminar del algoritmo de simulacionde coliciones por Zahir Llerena

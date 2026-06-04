@@ -300,7 +300,27 @@ public:
     }
 };
 
+// ============================================================================
+// 5. PROGRAMA PRINCIPAL
+// ============================================================================
+int main() {
+    CollisionsSimulation sim(100.0, 100.0, 0.01, 0.75);
 
+    // Inicializar los 4 obstáculos de la práctica [cite: 76]
+    sim.addObstacle(Vector2D(30.0, 30.0), 10.0);
+    sim.addObstacle(Vector2D(70.0, 30.0), 10.0);
+    sim.addObstacle(Vector2D(30.0, 70.0), 10.0);
+    sim.addObstacle(Vector2D(70.0, 70.0), 10.0);
+
+    // Registrar 4 partículas concurrentes [cite: 111]
+    sim.addParticle(Vector2D(10.0, 10.0), Vector2D(15.0, 12.0), 2.0, 2.5);
+    sim.addParticle(Vector2D(90.0, 10.0), Vector2D(-12.0, 14.0), 3.0, 3.0);
+    sim.addParticle(Vector2D(10.0, 90.0), Vector2D(11.0, -15.0), 1.5, 2.0);
+    sim.addParticle(Vector2D(90.0, 90.0), Vector2D(-14.0, -11.0), 2.5, 2.8);
+
+    sim.runSimulation(15.0);
+    return 0;
+}
 
 
 

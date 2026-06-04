@@ -1,3 +1,5 @@
+# Sistema de grafica para el motor de coliciones
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -72,3 +74,7 @@ ax_momento.grid(True, linestyle='--', alpha=0.5)
 ax_momento.legend(loc='lower left', shadow=True)
 
 plt.show()
+
+
+# Funcion preliminar de grafica del sistema de colisiones por Zahir Llerena 
+
